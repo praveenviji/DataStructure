@@ -1,1 +1,106 @@
+// queue implementation using linked list.
 
+
+public class Main {
+    public static void main(String[] args) {
+       
+      Stack stack = new Stack(); 
+      System.out.println(stack.isEmpty());
+      stack.push(10);
+      System.out.println(stack.peek());
+      stack.push(20);
+      System.out.println(stack.peek());
+      stack.push(30);
+      System.out.println(stack.peek());
+      stack.push(40);
+      System.out.println(stack.peek());
+      stack.push(50);
+      System.out.println(stack.peek());
+      stack.display();
+      System.out.println(stack.pop());
+      System.out.println(stack.pop());
+      System.out.println(stack.pop());
+      System.out.println(stack.pop());
+      System.out.println(stack.pop());
+      System.out.println(stack.pop());
+      System.out.println(stack.isEmpty());
+      stack.display();
+       
+    }
+}
+
+class Stack{
+    
+    Node head;
+    
+    Stack(){
+        head=null;
+    }
+    
+    public boolean isEmpty(){
+        return (head==null);
+    }
+    
+    public void push(int data){
+        Node newNode = new Node(data);
+        
+        if(head==null){
+            head=newNode;
+        }
+        else{
+            newNode.next=head;
+            head=newNode;
+        }
+    }
+    
+    public int pop(){
+        if(head==null){
+            System.out.println("Stack is Empty");
+            return -1;
+        }
+        if(head.next==null){
+            int temp = head.data;
+            head=null;
+            return temp;
+        }
+        
+        int temp = head.data;
+        head=head.next;
+        
+        return temp;
+        
+    }
+    
+    public int peek(){
+        if(isEmpty()){
+            System.out.println("Stack is empty");
+            return -1;
+        }
+        
+        return head.data;
+    }
+    
+    public void display(){
+        if(isEmpty()){
+            System.out.println("Stack is empty");
+            return ;
+        }
+        Node currentNode = head;
+        while(currentNode!=null){
+            System.out.print(currentNode.data+" ");
+            currentNode=currentNode.next;
+        }
+        System.out.println();
+    }
+    
+    class Node{
+        int data;
+        Node next;
+        
+        public Node(int data){
+            this.data=data;
+            next=null;
+        }
+    }
+    
+}
